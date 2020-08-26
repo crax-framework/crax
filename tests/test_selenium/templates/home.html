@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Home</title>
+</head>
+<body>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <div>
+            <input name="first_field" id="first_field">
+        </div>
+        <div>
+            <input name="second_field" id="second_field">
+        </div>
+        <div>
+            <input name="csrf_token" id="csrf_token" value="{{ csrf_token() }}" hidden>
+        </div>
+        <input type="file" name="pic" id="pic">
+        <div>
+            <button>Send</button>
+        </div>
+    </form>
+    <input id="square" value="{{ square_(2) }}">
+    <input id="hello" value="{{ hello() }}">
+</body>
+</html>

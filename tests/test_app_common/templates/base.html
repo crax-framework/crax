@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Crax Tests{% endblock %}</title>
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <script src="/static/jquery-3.4.1.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+</head>
+<body class="d-flex flex-column h-100">
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">Crax Tests</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container" style="margin-top: 60px;">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1>Testing index page</h1>
+    </div>
+    {% if data %} {{ data }} {% endif %}
+    {% if files %}
+        {% for file in files %}}
+            {{ file }}
+        {% endfor %}}
+    {% endif %}
+
+{% endblock %}

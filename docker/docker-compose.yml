@@ -1,0 +1,60 @@
+version: '3.5'
+
+services:
+  rabbitmq-container:
+    image: rabbitmq:3.8.3-management
+    hostname: rabbitmq-container
+    container_name: rmq_crax
+    ports:
+      - 5673:5673
+      - 15673:15673
+    networks:
+      - crax_net
+
+  postgres-container:
+    image: ephmann/crax_postgres
+    hostname: postgres-container
+    container_name: pg_crax
+    build:
+      context: .
+      dockerfile: app/PostgresDockerfile
+    ports:
+      - 5433:5433
+    networks:
+      - crax_net
+
+  mysql-container:
+    image: ephmann/crax_mysql
+    hostname: mysql-container
+    container_name: mysql_crax
+    build:
+      context: .
+      dockerfile: app/MySQLDockerfile
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3307:3307
+    networks:
+      - crax_net
+
+  crax-container:
+    image: ephmann/crax_tests
+    container_name: crax
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    env_file: database.conf
+    ports:
+      - 5000:80
+    depends_on:
+      - rabbitmq-container
+      - postgres-container
+      - mysql-container
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - crax_net
+
+networks:
+  crax_net:
+    external:
+      name: crax_net

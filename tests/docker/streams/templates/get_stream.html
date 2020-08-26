@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRAX Tests</title>
+    <style>
+        body{font-family:sans-serif;font-size:100%;background-color:#f2f2f2;color:#01212b;margin:0;padding:0}#testResults{background:#01212b;color:#fff;max-width:60%;border-radius:5px;margin-left:20%;margin-right:20%;margin-top:20px;margin-bottom:30px;padding:10px}#report{color:#01212b;max-width:30%;margin-left:40%;margin-right:40%;margin-top:20px;margin-bottom:30px;text-align:center}#report a{color:#fff;position:relative;display:inline-block;padding:.8em;padding-top:.8em;padding-bottom:.8em;border-radius:3px;background-color:#fc4915;font-size:13px;text-align:center;text-decoration:none;cursor:pointer}#navbar{overflow:hidden;background-color:#092e3e}#navbar a{float:left;display:block;color:#fc4915;text-align:center;padding:14px;text-decoration:none}
+    </style>
+</head>
+<body>
+<div id="navbar">
+    <a href="#">CRAX</a>
+</div>
+<h1 style="text-align: center;">Realtime logs</h1>
+<hr style="color: #fc4915;">
+<div id="testResults"></div>
+<div id="bottom" class="bottom"></div>
+<div id="report">
+    <a href="#" id="tests_summary" style="display: none">Get Coverage Report</a>
+    <a href="/coverage/index.html" id="cov_report" style="display: none">Click To See Report</a>
+</div>
+
+</body>
+<script>
+    var testResults=document.getElementById("testResults");document.addEventListener("DOMContentLoaded",function(){testResults.innerHTML="";var e=new XMLHttpRequest;e.overrideMimeType("text/plain"),e.open("GET","/get_stream"),e.seenBytes=0,e.onreadystatechange=function(){if(3===e.readyState){var t=e.response.substr(e.seenBytes);testResults.innerHTML+="<pre>"+t+"</pre>",-1!==t.indexOf("ALL TESTS DONE")&&(getSummary.style.display="initial"),e.seenBytes=e.responseText.length}},e.addEventListener("error",e=>{console.log(e)}),e.send()});var getSummary=document.getElementById("tests_summary"),getReport=document.getElementById("cov_report"),ws=new WebSocket("ws://127.0.0.1:5000/");ws.onmessage=function(e){(e.data&&("."===e.data?testResults.innerHTML+=e.data.split("\n").join("<br>"):testResults.innerHTML+="<pre>"+e.data+"</pre>"),-1!==e.data.indexOf("TOTAL"))&&document.getElementById("bottom").scrollIntoView({block:"center",behavior:"smooth"});-1!==e.data.indexOf("ALL TESTS DONE")&&(getSummary.style.display="initial")},getSummary.addEventListener("click",e=>{e.preventDefault();var t=new XMLHttpRequest;t.open("POST","/get_stream"),t.overrideMimeType("application/json"),t.send(JSON.stringify({data:"summary"})),t.onload=(()=>{"success"in JSON.parse(t.responseText)&&(getSummary.style.display="none",getReport.style.display="initial")})});
+</script>

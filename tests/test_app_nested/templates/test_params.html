@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Test Get Params</h1>
+    {% if query %}
+        {% for k, v in query.items() %}
+            {{ k }} = {{ v.0 }}
+        {% endfor %}
+    {% endif %}
+
+    {% if params %}
+        {% for k, v in params.items() %}
+            {{ k }} = {{ v }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

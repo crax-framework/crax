@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}CRAX {{ status_code }} ERROR{% endblock %}
+{% block content %}
+    <div class="error_container_title">
+        <h1>CRAX {{ status_code }} ERROR</h1>
+        <h2 class="crax_mark">{% if ex_value %}{{ ex_value }}{% endif %}</h2>
+    </div>
+    <div class="error_container">
+        <h2>{% if ex_class %}{{ ex_class }}{% endif %}</h2>
+        {% if traceback %}
+                {% for tr in traceback %}<div class="trace_line">{{ tr }}</div>{% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

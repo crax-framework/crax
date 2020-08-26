@@ -1,0 +1,3 @@
+include README.md
+recursive-include crax/swagger/static *
+recursive-include crax/templates *

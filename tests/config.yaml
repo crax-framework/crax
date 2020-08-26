@@ -1,0 +1,20 @@
+"COMMAND_OPTIONS:\n- !!python/tuple\n  - - --database\n    - -d\n  - help: specify\
+  \ database to run migrations\n    type: &id001 !!python/name:builtins.str ''\n-\
+  \ !!python/tuple\n  - - --apps\n    - -a\n  - help: generate migrations for app\n\
+  \    nargs: '*'\n    type: *id001\n- !!python/tuple\n  - - --message\n    - -m\n\
+  \  - help: specify revision message\n    type: *id001\n- !!python/tuple\n  - - --cov\n\
+  \  - {}\n- !!python/tuple\n  - - --cov-config\n  - {}\n- !!python/tuple\n  - - --sql\n\
+  \    - -s\n  - action: store_true\n    dest: sql\n    help: generate sql script\n\
+  - !!python/tuple\n  - - --down\n    - -n\n  - action: store_true\n    dest: down\n\
+  \    help: downgrade migrations\n- !!python/tuple\n  - - --revision\n    - -r\n\
+  \  - help: specify revision you want to migrate\n    type: *id001\n- !!python/tuple\n\
+  \  - - --latest\n    - -l\n  - action: store_true\n    dest: latest\n    help: get\
+  \ latest revisions\n- !!python/tuple\n  - - --cov-append\n  - action: store_true\n\
+  - !!python/tuple\n  - - test_file_1\n  - {}\n- !!python/tuple\n  - - test_file_2\n\
+  \  - default: null\n    nargs: '?'\nENGINES:\n  mysql:\n  - mysql+pymysql://crax:CraxPassword@127.0.0.1/test_crax\n\
+  \  - mysql+pymysql://root:@127.0.0.1/test_crax\n  postgresql:\n  - postgresql://crax:CraxPassword@127.0.0.1/test_crax\n\
+  \  - postgresql://postgres:@127.0.0.1/test_crax\nTEST_USERS:\n- first_name: James\n\
+  \  id: 1\n  password: qwerty\n  username: jamie\n- first_name: Robert\n  id: 2\n\
+  \  password: qwerty\n  username: rob\n- first_name: Tomas\n  id: 3\n  password:\
+  \ qwerty\n  username: tom\nmysql-container: mysql+pymysql://crax:CraxPassword@mysql-container/test_crax\n\
+  postgres-container: postgresql://crax:CraxPassword@postgres-container/test_crax\n"

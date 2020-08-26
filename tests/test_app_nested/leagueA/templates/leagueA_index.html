@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LeagueA</title>
+</head>
+<body>
+    <h1>LeagueA Index Page</h1>
+    <a href="{{ url('home') }}" id="home_url">Home Page</a>
+    <a href="{{ url('first_league') }}" id="nested_first_level_url">Nested First Level</a>
+    <a href="{{ url('first_league', team_name='Penguins') }}" id="nested_second_level_url">Nested Second Level</a>
+    <a href="{{ url('first_league_scores', team_name='Penguins') }}" id="nested_second_level_no_name_url">Nested Second Level</a>
+
+    <a href="{{ url('first_league_players', team_name='Penguins', player='Crosby') }}" id="nested_third_level_no_options">Nested Third Level</a>
+    <a href="{{ url('first_league_players', team_name='Penguins', player='Crosby', optional=87) }}" id="nested_third_level_options">Nested Third Level</a>
+    <a href="{{ url('first_league_coaches', team_name='Oilers', coach='Tippett') }}" id="nested_third_level_namespace">Namespace Third Level</a>
+</body>
+</html>

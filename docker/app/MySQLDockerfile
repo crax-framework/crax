@@ -1,0 +1,11 @@
+FROM mariadb
+
+RUN mkdir -p /tmp/mysql_init/
+COPY app/test_mysql.sql /tmp/mysql_init/
+COPY app/mysql_init.sh /docker-entrypoint-initdb.d/
+
+ENV MYSQL_USER=crax
+ENV MYSQL_ROOT_PASSWORD=CraxPassword
+ENV MYSQL_PASSWORD=CraxPassword
+ENV MYSQL_PORT=3307
+ENV MYSQL_DATABASE=test_crax

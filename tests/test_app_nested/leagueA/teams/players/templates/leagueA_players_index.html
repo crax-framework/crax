@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LeagueA Players</title>
+</head>
+<body>
+    <h1>LeagueA Players Index Page</h1>
+    {% if query_team_name %}
+        <h2>Query: {{ query_team_name.0 }}</h2>
+    {% endif %}
+    <h2>Params: {{ params_team_name }} {{ player }}</h2>
+    {% if optional %} <h3>{{ optional }}</h3> {% endif %}
+</body>
+</html>
