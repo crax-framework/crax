@@ -39,7 +39,7 @@ class BaseLogger(ABC):
         )
         self.console = get_settings_variable("LOG_CONSOLE", default=False)
         self.streams = get_settings_variable(
-            "LOG_STEAMS", default=[sys.stdout, sys.stderr]
+            "LOG_STREAMS", default=[sys.stdout, sys.stderr]
         )
 
         enable_sentry = get_settings_variable("ENABLE_SENTRY", default=False)
