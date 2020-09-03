@@ -19,9 +19,13 @@ def get_settings(settings: str = None) -> typing.Any:
 
 def get_settings_variable(variable: str, default=None) -> typing.Any:
     settings = get_settings()
+    var = None
     if hasattr(settings, variable):
-        return getattr(settings, variable)
-    return default
+        var = getattr(settings, variable)
+    else:
+        if default is not None:
+            var = default
+    return var
 
 
 async def collect_middleware(based: str) -> typing.Any:
@@ -44,9 +48,7 @@ async def collect_middleware(based: str) -> typing.Any:
 
 def unpack_urls(nest: typing.Any) -> typing.Generator:
     if isinstance(nest, list):
-        for lst in nest:
-            for x in unpack_urls(lst):
-                yield x
+        yield from unpack_urls(lst)
     else:
         yield nest
 
