@@ -19,13 +19,9 @@ def get_settings(settings: str = None) -> typing.Any:
 
 def get_settings_variable(variable: str, default=None) -> typing.Any:
     settings = get_settings()
-    var = None
     if hasattr(settings, variable):
-        var = getattr(settings, variable)
-    else:
-        if default is not None:
-            var = default
-    return var
+        return getattr(settings, variable)
+    return default
 
 
 async def collect_middleware(based: str) -> typing.Any:
