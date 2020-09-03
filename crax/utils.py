@@ -49,8 +49,7 @@ async def collect_middleware(based: str) -> typing.Any:
 def unpack_urls(nest: typing.Any) -> typing.Generator:
     if isinstance(nest, list):
         for lst in nest:
-            for x in unpack_urls(lst):
-                yield x
+            yield from unpack_urls(lst):
     else:
         yield nest
 
